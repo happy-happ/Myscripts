@@ -292,7 +292,7 @@ var K256 = new Array(
 var ihash, count, buffer;
 var sha256_hex_digits = "0123456789abcdef";
 
-/* Add 32-bit integers with 16-bit operations (bug in some JS-interpreters: 
+/* Add 32-bit integers with 16-bit operations (bug in some JS-interpreters:
 overflow) */
 function safe_add(x, y) {
     var lsw = (x & 0xffff) + (y & 0xffff);

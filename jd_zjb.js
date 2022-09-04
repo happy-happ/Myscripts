@@ -49,7 +49,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
       $.isLogin = true;
       $.nickName = '';
       message = '';
-      await TotalBean();
+      //await TotalBean();
       console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
@@ -63,7 +63,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
       if (InviterPin.length != 0) {
         await help()
       } else {
-        await help2("zjb",Math.random() > 0.5 ? "9vOskAagcMJ4EOWXPQSS9A%3D%3D" : "9irilvenEupYF488TUrl19DLuKQ9zWnXYHf9anC0ujw%3D")        
+        await help2("zjb",Math.random() > 0.5 ? "9vOskAagcMJ4EOWXPQSS9A%3D%3D" : "9irilvenEupYF488TUrl19DLuKQ9zWnXYHf9anC0ujw%3D")
       }
     }
   }

@@ -3,7 +3,7 @@ JoyJd任务脚本
 已支持IOS双京东账号,Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 jd_joyjd_open通用ID任务，多个活动用@连接，任务连接https://jdjoy.jd.com/module/task/v2/doTask
-export comm_activityIDList="af2b3d56e22d43afa0c50622c45ca2a3"  
+export comm_activityIDList="af2b3d56e22d43afa0c50622c45ca2a3"
 export comm_endTimeList="1639756800000"
 export comm_tasknameList="京东工业品抽奖"
 
@@ -27,10 +27,10 @@ const $ = new Env('JoyJd任务脚本');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [];
-let activityIDList = '';     
+let activityIDList = '';
 let endTimeList = '';
 let tasknameList = '';
-let activityIDArr = [];     
+let activityIDArr = [];
 let endTimeArr = [];
 let tasknameArr = [];
 let activityID = '', endTime = '', taskname = '';
@@ -56,7 +56,7 @@ if ($.isNode()) {
     }
     if (!activityIDList) {
         $.log(`没有通用ID任务，尝试获取远程`);
-        let data = await getData("https://gitee.com/KingRan521/JD-Scripts/raw/master/shareCodes/joyjd_open.json")
+        let data = await getData("https://cdn.jsdelivr.net/gh/KingRan/shareCodes@master/joyjd_open.json")
         if (data.activityIDList && data.activityIDList.length) {
             $.log(`获取到远程且有数据`);
             activityIDList = data.activityIDList.join('@')
@@ -76,7 +76,7 @@ if ($.isNode()) {
         $.oldcookie = cookiesArr[i];
         $.isLogin = true;
         $.nickName = '';
-        await TotalBean();
+        //await TotalBean();
         $.UserName = decodeURIComponent($.cookie.match(/pt_pin=([^; ]+)(?=;?)/) && $.cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
         console.log(`\n*****开始【京东账号${$.index}】${$.nickName || $.UserName}*****\n`);
         if (!$.isLogin) {

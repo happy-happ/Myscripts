@@ -76,7 +76,7 @@ const JD_API_HOST = `https://api.m.jd.com/client.action`;
 			$.nickName = '';
 			$.beans = 0;
 			message = '';
-			await TotalBean();
+			//await TotalBean();
 			console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********`);
 			if (!$.isLogin) {
 				$.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {
@@ -173,7 +173,7 @@ function interact_template_getHomeData(timeout = 0) {
 					for (let i = 0; i < data.data.result.taskVos.length; i++) {
 						console.log("\n" + data.data.result.taskVos[i].taskType + '-' + data.data.result.taskVos[i].taskName + '-' + (data.data.result.taskVos[i].status === 1 ? `已完成${data.data.result.taskVos[i].times}-未完成${data.data.result.taskVos[i].maxTimes}` : "全部已完成"))
 						//签到
-						if (data.data.result.taskVos[i].taskName === '邀请好友助力') {							
+						if (data.data.result.taskVos[i].taskName === '邀请好友助力') {
 							myInviteCode = data.data.result.taskVos[i].assistTaskDetailVo.taskToken;
 							console.log('开始邀请好友助力....');
 							llcanhelp = true;
@@ -183,7 +183,7 @@ function interact_template_getHomeData(timeout = 0) {
 								await harmony_collectScore(code, data.data.result.taskVos[i].taskId);
 								await $.wait(2000);
 								if(!llcanhelp)
-									break;								
+									break;
 							}
 						} else if (data.data.result.taskVos[i].status === 3) {
 							console.log('开始抽奖');
@@ -248,7 +248,7 @@ function harmony_collectScore(taskToken, taskId, itemId = "", actionType = 0, ti
 					'Accept-Language': `zh-cn`
 				},
 				body: `functionId=${collectScoreFunPrefix}_collectScore&body={"appId":"${appId}","taskToken":"${taskToken}","taskId":${taskId}${itemId ? ',"itemId":"'+itemId+'"' : ''},"actionType":${actionType}&client=wh5&clientVersion=1.0.0`
-			}			
+			}
 			$.post(url, async(err, resp, data) => {
 				try {
 					data = JSON.parse(data);

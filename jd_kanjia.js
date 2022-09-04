@@ -55,7 +55,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
       $.isLogin = true;
       $.nickName = '';
       message = '';
-      await TotalBean();
+      //await TotalBean();
       console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
@@ -67,11 +67,11 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
       }
 
       await list()
-     
+
      await $.wait(10000)
-     
+
      await kanjia()
-     
+
 
     }
   }
@@ -97,13 +97,13 @@ headers: {
       "Cookie": cookie,
       }
                 }
-      
+
         $.post(options, async (err, resp, data) => {
             try {
 
                     data = JSON.parse(data);
-                 
-                   
+
+
                    if($.index === 1){
                     if(data.code == 0){
 console.log("商品："+data.data[0].goodsName+"\n商品ID："+data.data[0].actId)
@@ -114,7 +114,7 @@ console.log("\n商品："+data.data[2].goodsName+"\n商品ID："+data.data[2].ac
 await listyqm(data.data[2].actId)
 console.log("\n商品："+data.data[3].goodsName+"\n商品ID："+data.data[3].actId)
 await listyqm(data.data[3].actId)
-console.log("\n商品："+data.data[4].goodsName+"\n商品ID："+data.data[4].actId) 
+console.log("\n商品："+data.data[4].goodsName+"\n商品ID："+data.data[4].actId)
 await listyqm(data.data[4].actId)
 
                 }
@@ -142,16 +142,16 @@ headers: {
       "Cookie": cookie,
       }
                 }
-      
+
         $.post(options, async (err, resp, data) => {
             try {
 
                     data = JSON.parse(data);
 
-                   
-                   
+
+
                     if(data.code == 0){
-                      
+
                        console.log('\n当前商品邀请码：'+data.data.packetId+"\n当前初始化砍价："+data.data.amount)
 
                 }
@@ -178,16 +178,16 @@ headers: {
       "Cookie": cookie,
       }
                 }
-      
+
         $.post(options, async (err, resp, data) => {
             try {
 
                     data = JSON.parse(data);
 
-                   
-                   
+
+
                     if(data.code == 0){
-                      
+
                        console.log('\n已帮砍：'+data.msg)
 
                 }else

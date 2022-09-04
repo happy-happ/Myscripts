@@ -1,6 +1,6 @@
 /*
 #电脑配件ID任务jd_computer,自行加入以下环境变量，多个ID用@连接
-export computer_activityIdList="17"  
+export computer_activityIdList="17"
 
 即时任务，无需cron
 */
@@ -38,7 +38,7 @@ $.outFlag = 0
   }
   if (!activityIdList) {
     $.log(`没有电脑配件ID，尝试获取远程`);
-    let data = await getData("https://gitee.com/KingRan521/JD-Scripts/raw/master/shareCodes/dlpj.json")
+    let data = await getData("https://cdn.jsdelivr.net/gh/KingRan/shareCodes@master/dlpj.json")
     if (data && data.length) {
         $.log(`获取到远程且有数据`);
         activityIdList = data.join('@')
@@ -147,7 +147,7 @@ function indexInfo() {
             if(res.code == 200 && res.data){
               $.list = res.data.list
               $.extraTaskStatus = res.data.extraTaskStatus
-              
+
             }else if(res.msg){
               if(res.msg.indexOf('活动太火爆') > -1){
                 $.hotFlag = true

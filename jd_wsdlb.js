@@ -48,7 +48,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
       $.isLogin = true;
       $.nickName = '';
       message = '';
-      await TotalBean();
+      //await TotalBean();
       console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
@@ -59,10 +59,10 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
         continue
       }
 
-      
+
       await jdFruit()
-     
-      
+
+
 
     }
   }
@@ -78,7 +78,7 @@ if ($.isNode() && allMessage) {
   })
 
 async function jdFruit() {
-  
+
   await info()
   await dolist()
   await apCollectWater()
@@ -87,7 +87,7 @@ if ($.info.data.firstJoinFlag === true) {
 if(dlbtz == true){
  allMessage += `京东账号${$.index}-${$.nickName || $.UserName}\n您忘了种植新的水果,内侧入口为：\n极速版-百元生活费-赚金币-下拉-水果免费领${$.index !== cookiesArr.length ? '\n\n' : '\n\n'}`;}
 }else if ($.info.data.firstJoinFlag === false) {
-    
+
         console.log(`\n当前种植水果：${$.info.data.plantInfo[0].cropName}\n当前阶段: ${$.info.data.plantInfo[0].nowStep}\n当前下一阶段还需要浇水：${$.info.data.plantInfo[0].upgradeWateringNum}次`)
        if($.info.data.plantInfo[0].nowStep == 4){
        allMessage += `京东账号${$.index}-${$.nickName || $.UserName}\n当前种植水果可以收取了${$.index !== cookiesArr.length ? '\n\n' : '\n\n'}`;
@@ -97,45 +97,45 @@ if(dlbtz == true){
         allMessage += `京东账号${$.index}-${$.nickName || $.UserName}\n当前种植水果：${$.info.data.plantInfo[0].cropName}\n当前阶段: ${$.info.data.plantInfo[0].nowStep}\n当前下一阶段还需要浇水：${$.info.data.plantInfo[0].upgradeWateringNum}次${$.index !== cookiesArr.length ? '\n\n' : '\n\n'}`;}
                 if (getwat.code === 0 ){
         $.log(`\n领取定时水滴：${getwat.data.collectWaterNumber}`)
-                    
+
                 }
-        
+
        if($.info.data.plantInfo[0].status == 0){
          $.log(`无需除草`)
-       }else 
+       }else
        if($.info.data.plantInfo[0].status == 1){
          $.log(`需要除草`)
          await chucao($.info.data.earthInfo[0].nowPlantId,$.info.data.encPin)
          if(cc.errMsg == "success"){
          $.log(`除草成功`)
-         }else 
+         }else
          if(cc.success == false){
              $.log(cc.errMsg)
              //break
-             
+
          }
        }
-        
-        
-        if ($.do.code === 0){       
+
+
+        if ($.do.code === 0){
  let taskList = $.do.data
        for (let i = 0 ; i < taskList.length; i++){
        taskType = taskList[i].taskType
        id = taskList[i].id
        taskSourceUrl = taskList[i].taskSourceUrl
-                        
+
         await dotask(taskType,id,taskSourceUrl)
         await dotask(taskType,id,"70511671722")
-             
+
         if ($.qd.code === 2005 ){
              $.log(`\n${$.qd.errMsg}`)
-             
+
      }
      }
  }
 
      await jiaoshui($.info.data.earthInfo[0].nowPlantId)
-    
+
      if (watering.success === true ){
           $.log(parseInt(watering.data.property * 0.1))
        cs = parseInt(watering.data.property * 0.1)
@@ -145,26 +145,26 @@ if(dlbtz == true){
         await jiaoshui($.info.data.earthInfo[0].nowPlantId)
     if (watering.code === 20004 ){
         $.log(`\n浇水水滴不足，快去做任务吧`)
-          //break 
+          //break
         }
 
         if (watering.code === 0 ){
         $.log(`\n${watering.data.speedFarmPlantInfo.cropName}:\n还需水滴：${watering.data.speedFarmPlantInfo.nowStepNeedWater}\n还需浇水：${watering.data.speedFarmPlantInfo.upgradeWateringNum}`)
-        
+
         }
 
 }
-    
-}  
+
+}
 }
 
 
 
-     
+
 }
 
 
- 
+
 }
 
 function info() {
@@ -180,13 +180,13 @@ headers: {
       "Cookie": cookie,
       }
                 }
-      
+
         $.get(options, async (err, resp, data) => {
             try {
 
                   $.info = JSON.parse(data);
 
-                  
+
             } catch (e) {
                 $.logErr(e, resp);
             } finally {
@@ -211,13 +211,13 @@ headers: {
       "Cookie": cookie,
       }
                 }
-      
+
         $.get(options, async (err, resp, data) => {
             try {
 
                   $.qd = JSON.parse(data);
 
-                  
+
             } catch (e) {
                 $.logErr(e, resp);
             } finally {
@@ -241,13 +241,13 @@ headers: {
       "Cookie": cookie,
       }
                 }
-      
+
         $.get(options, async (err, resp, data) => {
             try {
 
                   $.do = JSON.parse(data);
 
-                  
+
             } catch (e) {
                 $.logErr(e, resp);
             } finally {
@@ -270,13 +270,13 @@ headers: {
       "Cookie": cookie,
       }
                 }
-      
+
         $.get(options, async (err, resp, data) => {
             try {
 
                   watering = JSON.parse(data);
 
-                  
+
             } catch (e) {
                 $.logErr(e, resp);
             } finally {
@@ -299,13 +299,13 @@ headers: {
       "Cookie": cookie,
       }
                 }
-      
+
         $.post(options, async (err, resp, data) => {
             try {
 
                   getwat = JSON.parse(data);
 
-                  
+
             } catch (e) {
                 $.logErr(e, resp);
             } finally {
@@ -329,13 +329,13 @@ headers: {
       "Cookie": ck2,
       }
                 }
-      
+
         $.get(options, async (err, resp, data) => {
             try {
 
                   cc = JSON.parse(data);
 
-                  
+
             } catch (e) {
                 $.logErr(e, resp);
             } finally {
@@ -374,13 +374,13 @@ headers: {
       "Cookie": cookie,
       }
                 }
-      
+
         $.get(options, async (err, resp, data) => {
             try {
 
                   //$.helpinfo = JSON.parse(data);
 
-                  
+
             } catch (e) {
                 $.logErr(e, resp);
             } finally {

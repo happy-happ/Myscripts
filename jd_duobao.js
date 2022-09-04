@@ -319,5 +319,3 @@ async function verifyDomain(param = {}) {
     }
     return false;
 }
-
-
