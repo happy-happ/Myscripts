@@ -58,7 +58,6 @@ $.innerKeyWords =
         "试卷","win10系统","流量卡","上网卡","一片装",
         "安全套", "龟头", "阴道", "阴部", "手机卡", "电话卡", "流量卡",
         "玉坠","和田玉","习题","试卷","手机壳","钢化膜"
-
     ]
 //下面很重要，遇到问题请把下面注释看一遍再来问
 let args_xh = {
@@ -735,7 +734,8 @@ function geth5st(body) {
         }),
         headers: {
             "Content-Type": "application/json"
-        }
+        },
+		timeout: 30000,
     },str='';
     return new Promise((resolve) => {
         $.post(opt, (err, resp, data) => {

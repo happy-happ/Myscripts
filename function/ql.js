@@ -6,7 +6,14 @@ const { readFile } = require('fs/promises');
 const path = require('path');
 
 const qlDir = '/ql';
-const authFile = path.join(qlDir, 'config/auth.json');
+const fs = require('fs');
+let Fileexists = fs.existsSync('/ql/data/config/auth.json');
+let authFile="";
+if (Fileexists)
+	authFile="/ql/data/config/auth.json"
+else
+	authFile="/ql/config/auth.json"
+//const authFile = path.join(qlDir, 'config/auth.json');
 
 const api = got.extend({
   prefixUrl: 'http://127.0.0.1:5600',
@@ -106,7 +113,7 @@ module.exports.DisableCk = async (eid) => {
   const body = await api({
     method: 'put',
     url: 'api/envs/disable',
-    params: { t: Date.now() },	
+    params: { t: Date.now() },
     body: JSON.stringify([eid]),
     headers: {
       Accept: 'application/json',
@@ -122,7 +129,7 @@ module.exports.EnableCk = async (eid) => {
   const body = await api({
     method: 'put',
     url: 'api/envs/enable',
-    params: { t: Date.now() },	
+    params: { t: Date.now() },
     body: JSON.stringify([eid]),
     headers: {
       Accept: 'application/json',
@@ -171,12 +178,12 @@ module.exports.getEnvById = async(eid) => {
 
 module.exports.getEnvByPtPin = async (Ptpin) => {
   const envs = await this.getEnvs();
-  for (let i = 0; i < envs.length; i++) {	
+  for (let i = 0; i < envs.length; i++) {
 	var tempptpin = decodeURIComponent(envs[i].value.match(/pt_pin=([^; ]+)(?=;?)/) && envs[i].value.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
-	if(tempptpin==Ptpin){		 
-		 return envs[i]; 
+	if(tempptpin==Ptpin){
+		 return envs[i];
 	  }
-  }  
+  }
   return "";
 };
 

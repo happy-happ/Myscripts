@@ -1,9 +1,7 @@
 /*
-cron "35 11 * * *" jd_insight.js, tag:京洞察问卷通知
-
-by ccwav
+cron "35 9,15,20 * * *" jd_insight.js, tag:京洞察问卷通知
  */
- 
+
 const $ = new Env('京洞察问卷通知');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -15,10 +13,10 @@ let allnotify="";
 let WP_APP_TOKEN_ONE = "";
 
 if ($.isNode()) {
-	if (process.env.WP_APP_TOKEN_ONE) {		
+	if (process.env.WP_APP_TOKEN_ONE) {
 		WP_APP_TOKEN_ONE = process.env.WP_APP_TOKEN_ONE;
 	}
-	
+
 	Object.keys(jdCookieNode)
 		.forEach((item) => {
 			cookiesArr.push(jdCookieNode[item])
@@ -48,7 +46,7 @@ if ($.isNode()) {
 			$.nickName = '';
 			$.maxPage = '1';
 			message = '';
-			//await TotalBean();
+			await TotalBean();
 			console.log(`******开始查询【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
 			if (!$.isLogin) {
 				$.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {
@@ -63,11 +61,11 @@ if ($.isNode()) {
 			await main()
 		}
 	}
-	
+
 	if ($.isNode() && allnotify) {
         await notify.sendNotify(`${$.name}`, allnotify);
     }
-		
+
 })()
 .catch((e) => {
 	$.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')

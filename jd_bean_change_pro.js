@@ -247,7 +247,7 @@ if(DisableIndex!=-1){
 }
 
 //金融养猪
-let EnablePigPet=true;
+let EnablePigPet=false;
 DisableIndex=strDisableList.findIndex((item) => item === "金融养猪");
 if(DisableIndex!=-1){
 	console.log("检测到设定关闭金融养猪查询");
@@ -291,7 +291,6 @@ if(DisableIndex!=-1){
 	EnableJoyRun=false
 }
 
-//E卡查询
 let EnableCheckEcard=true;
 DisableIndex=strDisableList.findIndex((item) => item === "E卡查询");
 if(DisableIndex!=-1){
@@ -421,7 +420,7 @@ if(DisableIndex!=-1){
 
 						await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 							url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-						}, '\n\n本通知 By ccwav Mod',TempMessage)
+						}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 					}
 					if ($.isNode() && allMessageMonth) {
 						await notify.sendNotify(`京东月资产变动`, `${allMessageMonth}`, {
@@ -490,7 +489,7 @@ if(DisableIndex!=-1){
 
 				await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 					url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-				}, '\n\n本通知 By ccwav Mod',TempMessage)
+				}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			}
 			if ($.isNode() && allMessageMonth) {
 				await notify.sendNotify(`京东月资产变动`, `${allMessageMonth}`, {
@@ -506,7 +505,7 @@ if(DisableIndex!=-1){
 				allMessageGp2=strAllNotify+`\n`+allMessageGp2;
 			await notify.sendNotify(`${$.name}#2`, `${allMessageGp2}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessageGp3) {
@@ -515,7 +514,7 @@ if(DisableIndex!=-1){
 				allMessageGp3=strAllNotify+`\n`+allMessageGp3;
 			await notify.sendNotify(`${$.name}#3`, `${allMessageGp3}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessageGp4) {
@@ -524,7 +523,7 @@ if(DisableIndex!=-1){
 				allMessageGp4=strAllNotify+`\n`+allMessageGp4;
 			await notify.sendNotify(`${$.name}#4`, `${allMessageGp4}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessage) {
@@ -534,7 +533,7 @@ if(DisableIndex!=-1){
 
 			await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 
@@ -1028,7 +1027,7 @@ async function showMsg() {
 		if(strAllNotify)
 			ReturnMessage=strAllNotify+`\n`+ReturnMessage;
 
-		await notify.sendNotifybyWxPucher(strTitle, `${ReturnMessage}`, `${$.UserName}`,'\n\n本通知 By ccwav Mod',strsummary);
+		await notify.sendNotifybyWxPucher(strTitle, `${ReturnMessage}`, `${$.UserName}`,'\n\n本通知 By https://github.com/KingRan/KR',strsummary);
 	}
 
 	//$.msg($.name, '', ReturnMessage , {"open-url": "https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean"});
@@ -1652,7 +1651,7 @@ function redPacket() {
 								if (vo['endTime'] === t) {
 									$.jxRedExpire += parseFloat(vo.balance)
 								}
-							} else if (vo.activityName.includes("极速版")) {
+							} else if (vo.activityName.includes("极速版") || vo.activityName.includes("京东特价")) {
 								$.jsRed += parseFloat(vo.balance)
 								if (vo['endTime'] === t) {
 									$.jsRedExpire += parseFloat(vo.balance)
@@ -2600,9 +2599,9 @@ function GetJoyRuninginfo() {
         "Content-Type": "application/x-www-form-urlencoded",
         "Cookie": cookie,
         "Host": "api.m.jd.com",
-        "Origin": "https://joypark.jd.com",
-        "Referer": "https://joypark.jd.com/",
-        "User-Agent": $.UA
+        "Origin": "https://h5platform.jd.com",
+        "Referer": "https://h5platform.jd.com/",
+        "User-Agent": `jdpingou;iPhone;4.13.0;14.4.2;${randomString(40)};network/wifi;model/iPhone10,2;appBuild/100609;ADID/00000000-0000-0000-0000-000000000000;supportApplePay/1;hasUPPay/0;pushNoticeIsOpen/1;hasOCPay/0;supportBestPay/0;session/${Math.random * 98 + 1};pap/JA2019_3111789;brand/apple;supportJDSHWK/1;Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148`
 		}
 	var DateToday = new Date();
 	const body = {
@@ -2611,15 +2610,15 @@ function GetJoyRuninginfo() {
 		'joyLinkId':'LsQNxL7iWDlXUs6cFl-AAg'
     };
     const options = {
-        url: `https://api.m.jd.com/?functionId=runningPageHome&body=${encodeURIComponent(JSON.stringify(body))}&t=${DateToday.getTime()}&appid=activities_platform&client=ios&clientVersion=3.8.12`,
+        url: `https://api.m.jd.com/?functionId=runningPageHome&body=${encodeURIComponent(JSON.stringify(body))}&t=${DateToday.getTime()}&appid=activities_platform&client=ios&clientVersion=3.9.2`,
         headers,
     }
-    return new Promise(resolve => {
+	return new Promise(resolve => {
         $.get(options, (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
-                    console.log(`${$.name} API请求失败，请检查网路重试`)
+                    console.log(`GetJoyRuninginfo API请求失败，请检查网路重试`)
                 } else {
                     if (data) {
 						//console.log(data);
